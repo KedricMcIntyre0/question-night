@@ -285,21 +285,3 @@ small {
   overflow: hidden;
   transform-origin: center;
 }
-
-/* ----------------------------------
-   Sound toggle
----------------------------------- */
-
-.sound-toggle {
-  font-size: 12px;
-  color: rgba(229, 231, 235, 0.6);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.sound-toggle input {
-  accent-color: rgba(99, 102, 241, 0.9);
-}
