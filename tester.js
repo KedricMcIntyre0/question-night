@@ -7,40 +7,40 @@
 // -------------------------------
 const questions = new Map([
   // Perception (1–10)
-  [1,  "What do you think my first impression of you was?"],
-  [2,  "What part of my personality do you think stands out the most?"],
-  [3,  "What do you think I overthink the most?"],
-  [4,  "What do you think people often misunderstand about me?"],
-  [5,  "What do you think makes me feel most secure?"],
-  [6,  "What do you think I’m secretly afraid of?"],
-  [7,  "What’s one assumption you had about me that changed?"],
-  [8,  "What do you think I value more: comfort or growth?"],
-  [9,  "What do you think I need reassurance about?"],
-  [10, "What do you think I’m most proud of?"],
+  [1,  "What do you think my very first impression of you actually was?"],
+  [2,  "What do you think I notice first about people when I meet them?"],
+  [3,  "What do you think I worry about more than I let on?"],
+  [4,  "What do you think I feel misunderstood about most?"],
+  [5,  "What do you think makes me feel safest in a relationship?"],
+  [6,  "What do you think I’m quietly afraid of losing?"],
+  [7,  "What do you think surprised me most about you early on?"],
+  [8,  "What do you think I value more right now: stability or growth?"],
+  [9,  "What do you think I need reassurance about, even if I don’t ask?"],
+  [10, "What do you think I’m proud of but rarely talk about?"],
 
   // Connection (11–20)
-  [11, "When do you feel most connected to me?"],
-  [12, "What’s a small moment between us that meant a lot to you?"],
+  [11, "When do you think I feel most emotionally connected to you?"],
+  [12, "What do you think is a small moment between us that means a lot to me?"],
   [13, "What do you think I need more of in my life right now?"],
-  [14, "What’s something you’ve learned about me only by being close to me?"],
-  [15, "What do you think we do really well together?"],
-  [16, "When have you felt most appreciated by me?"],
-  [17, "What’s something you admire about how I handle things?"],
-  [18, "What’s a fear you’ve had about us?"],
-  [19, "What do you think makes our relationship different from others?"],
-  [20, "What’s one thing you hope we never lose?"],
+  [14, "What do you think I’ve learned about myself through being close to you?"],
+  [15, "What do you think I believe we do really well together?"],
+  [16, "When do you think I feel most appreciated by you?"],
+  [17, "What do you think I admire most about how you handle things?"],
+  [18, "What do you think worries me most about us, even if I don’t say it?"],
+  [19, "What do you think makes our relationship feel different to me?"],
+  [20, "What do you think I’m most afraid of us losing over time?"],
 
   // Reflection (21–30)
-  [21, "How have I surprised you emotionally?"],
-  [22, "What’s something you feel safe telling me?"],
-  [23, "What’s something you’ve grown to appreciate about me over time?"],
-  [24, "What’s a way I’ve shown up for you that really mattered?"],
-  [25, "What’s something about us you don’t say enough?"],
-  [26, "What’s something you’re still learning to trust about me?"],
-  [27, "What’s a moment you felt truly seen by me?"],
-  [28, "What do you think I’ve taught you?"],
-  [29, "What intention do you have for us moving forward?"],
-  [30, "What’s one thing you want us to protect as we grow?"]
+  [21, "How do you think I’ve been emotionally changed by this relationship?"],
+  [22, "What do you think I feel safest sharing with you?"],
+  [23, "What do you think I’ve grown to appreciate about you over time?"],
+  [24, "What do you think is a way you’ve shown up for me that really mattered?"],
+  [25, "What do you think I wish we talked about more?"],
+  [26, "What do you think I’m still learning to trust in you or in us?"],
+  [27, "When do you think I feel most understood by you?"],
+  [28, "What do you think I believe I’ve learned from loving you?"],
+  [29, "What do you think I hope our future feels like together?"],
+  [30, "What do you think I want us to protect no matter how much we grow?"]
 ]);
 
 // -------------------------------
@@ -615,3 +615,4 @@ nameBtnP2.addEventListener("click", () => editPlayerName(2));
 updateMetersUI();
 setActivePlayerUI();
 updatePlayerNamesUI();
+
