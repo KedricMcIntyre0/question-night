@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question Night</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <main class="table">
+      <!-- LEFT: Used / discard pile -->
+      <section class="pile" aria-label="Used pile">
+        <div id="usedStack" class="stack stack-left">
+          <span class="stack-title">Question Night</span>
+        </div>
+        <p class="pile-label">Used</p>
+      </section>
+
+      <!-- CENTER: Active card + controls -->
+      <section class="play" aria-label="Play area">
+        <!-- Active card -->
+        <div id="activeCard" class="card-ui">
+          <div class="card-header">Question Night</div>
+
+          <!-- Meta info -->
+          <div class="card-meta">
+            <p id="turn">Turn: <span id="turnName">Player 1</span></p>
+            <p id="level">Level: —</p>
+            <p id="timer">⏳ 60s</p>
+          </div>
+
+          <!-- TWO METERS -->
+          <div class="meters">
+            <!-- Player 1 meter -->
+            <div id="meterP1" class="meter meter-player active" aria-label="Player 1 meter">
+              <div class="meter-top">
+                <button id="nameP1" class="player-name" type="button">Player 1</button>
+                <span id="meterTextP1" class="meter-text">0/3</span>
+              </div>
+              <div
+                class="meter-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="3"
+                aria-valuenow="0"
+              >
+                <div id="meterFillP1" class="meter-fill"></div>
+              </div>
+            </div>
+
+            <!-- Player 2 meter -->
+            <div id="meterP2" class="meter meter-player" aria-label="Player 2 meter">
+              <div class="meter-top">
+                <button id="nameP2" class="player-name" type="button">Player 2</button>
+                <span id="meterTextP2" class="meter-text">0/3</span>
+              </div>
+              <div
+                class="meter-bar"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="3"
+                aria-valuenow="0"
+              >
+                <div id="meterFillP2" class="meter-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main question -->
+          <div class="card-body">
+            <p id="question">Press draw to begin 👀</p>
+          </div>
+
+          <!-- Mystery overlay (covers the WHOLE card; hidden until spin) -->
+          <div id="mysteryOverlay" class="mystery-overlay" aria-hidden="true">
+            <div class="mystery-overlay-card">
+              <div class="mystery-overlay-title">Mystery Question 🎡</div>
+              <p id="mysteryQuestion" class="mystery-question"></p>
+              <div class="mystery-overlay-hint">Draw a card to continue</div>
+            </div>
+          </div>
+
+          <div class="card-footer">Draw a card</div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <button id="drawBtn" type="button">Draw a card</button>
+
+        <div class="count-bar">
+          <button id="countBtn" class="secondary" type="button" disabled>
+            Count it ✅
+          </button>
+
+          <button id="skipBtn" class="secondary skip" type="button" disabled>
+            Don’t count ❌
+          </button>
+        </div>
+
+          <div class="wheel-row" aria-label="Mystery wheels">
+            <button id="wheel1Btn" class="wheel" type="button" disabled>🎡 Spin L1</button>
+            <button id="wheel2Btn" class="wheel" type="button" disabled>🎡 Spin L2</button>
+            <button id="wheel3Btn" class="wheel wheel-3" type="button" disabled>🎡 Spin L3</button>
+          </div>
+
+          <small>Tip: screen share on FaceTime.</small>
+        </div>
+
+        <!-- Sound controls -->
+        <audio id="cardSound" src="card-slide.mp3" preload="auto"></audio>
+        <label class="sound-toggle" for="soundToggle">
+          <input type="checkbox" id="soundToggle" />
+          Sound
+        </label>
+      </section>
+
+      <!-- RIGHT: Deck pile -->
+      <section class="pile" aria-label="Deck pile">
+        <div class="stack stack-right">
+          <span class="stack-title">Question Night</span>
+        </div>
+        <p class="pile-label">Deck</p>
+      </section>
+    </main>
+
+    <!-- WHEEL MODAL (outside main so it overlays everything) -->
+    <div id="wheelModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-top">
+          <strong id="wheelTitle">Mystery Wheel</strong>
+          <button id="closeWheel" class="modal-close" type="button">✕</button>
+        </div>
+
+        <div class="wheel-wrap">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" class="wheel-canvas" width="560" height="560"></canvas>
+        </div>
+
+        <button id="spinBtn" type="button">Spin</button>
+        <small id="wheelHint">Points will reset after spin.</small>
+      </div>
+    </div>
+
+    <!-- Logic (include ONCE, at end of body) -->
+    <script src="tester.js"></script>
+  </body>
+</html>
