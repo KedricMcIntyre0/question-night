@@ -52,6 +52,12 @@ const drawButton   = document.getElementById("drawBtn");
 const questionText = document.getElementById("question");
 const levelText    = document.getElementById("level");
 const timerText    = document.getElementById("timer");
+const card         = document.getElementById("qCard")
+const activeCard   = document.getElementById("activeCard");
+const usedStack    = document.getElementById("usedStack");
+let hasDrawnAtLeastOnce = false;
+const cardSound    = document.getElementById("cardSound");
+const soundToggle  = document.getElementById("soundToggle");
 
 // -------------------------------
 // Timer state
@@ -117,12 +123,54 @@ function animateLevel(label, className) {
 }
 
 function animateQuestion(text) {
-  questionText.classList.add("fade");
+  activeCard.classList.remove("deal");
+  void activeCard.offsetWidth; // restart animation
+  activeCard.classList.add("deal");
 
   setTimeout(() => {
     questionText.textContent = text;
-    questionText.classList.remove("fade");
-  }, 250);
+  }, 120);
+}
+
+function discardCurrentCardToLeft() {
+  const from = activeCard.getBoundingClientRect();
+  const to = usedStack.getBoundingClientRect();
+
+  // Create a "ghost" copy of the card
+  const ghost = activeCard.cloneNode(true);
+  ghost.classList.add("fly-card");
+
+  // Position it exactly over the active card
+  ghost.style.left = `${from.left}px`;
+  ghost.style.top = `${from.top}px`;
+  ghost.style.width = `${from.width}px`;
+  ghost.style.height = `${from.height}px`;
+
+  document.body.appendChild(ghost);
+
+  // Compute travel distance (center -> center)
+  const dx = (to.left + to.width / 2) - (from.left + from.width / 2);
+  const dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+
+  // Animate: slide left + slight rotate + flip + fade
+  const animation = ghost.animate(
+    [
+      { transform: `translate(0px, 0px) rotate(0deg) rotateY(0deg) scale(var(--active-scale))`, opacity: 1 },
+      { transform: `translate(${dx * 0.6}px, ${dy * 0.6}px) rotate(-4deg) rotateY(40deg) scale(1.02)`, opacity: 0.85 },
+      { transform: `translate(${dx}px, ${dy}px) rotate(-10deg) rotateY(85deg) scale(0.95)`, opacity: 0 }
+    ],
+    { duration: 420, easing: "cubic-bezier(.2,.9,.2,1)", fill: "forwards" }
+  );
+
+  animation.onfinish = () => ghost.remove();
+}
+
+function playCardSound() {
+  if (!soundToggle.checked) return;
+
+  cardSound.currentTime = 0;
+  cardSound.volume = 0.25; // soft + cozy
+  cardSound.play();
 }
 
 // -------------------------------
@@ -130,26 +178,32 @@ function animateQuestion(text) {
 // -------------------------------
 
 drawButton.addEventListener("click", () => {
+  // If no questions left, finish and stop
   if (questions.size === 0) {
     setGameCompleteUI();
     return;
   }
 
-  // pick a random remaining key
+  // Send current card to the left pile (only after first draw)
+  if (hasDrawnAtLeastOnce) discardCurrentCardToLeft();
+
+  // Pick a random remaining question
   const keys = Array.from(questions.keys());
   const randomKey = keys[Math.floor(Math.random() * keys.length)];
   const question = questions.get(randomKey);
 
-  // update UI (level + question + timer)
+  // Update UI (level + deal + timer + sound)
   const { label, className } = getLevelInfo(randomKey);
   animateLevel(label, className);
+//   playCardSound();
   animateQuestion(question);
   startTimer();
 
-  // remove question to prevent repeats
+  // Remove question to prevent repeats
   questions.delete(randomKey);
+  hasDrawnAtLeastOnce = true;
 
-  // if that was the last question, finish the game
+  // If that was the last question, finish the game
   if (questions.size === 0) {
     setGameCompleteUI();
   }
