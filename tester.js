@@ -47,27 +47,27 @@ const questions = new Map([
 // Mystery Wheels (L1/L2/L3)
 // -------------------------------
 const wheelLevel1 = [
-  "What’s something I do that instantly makes you feel closer to me?",
-  "What was your first ‘oh… I like them’ moment with me?",
+  "What’s a moment with me that meant more than you let on?",
   "What do I do that’s unintentionally attractive?",
+  "When do you feel most connected to me day-to-day?",
   "What’s a compliment you think about me but don’t say enough?",
-  "When do you feel most connected to me day-to-day?"
+  "What’s something I do that instantly makes you feel closer to me?"
 ];
 
 const wheelLevel2 = [
-  "When do you feel most secure with me—and when do you feel least secure?",
-  "What’s something you want more of from me that you haven’t asked for directly?",
+  "What’s something you’ve wanted more of from me lately?",
+  "What’s something you almost brought up before but didn’t?",
+  "What’s a pattern you’re trying to change in yourself?",
   "What’s a small thing I could do that would make a big difference for you?",
-  "What’s a fear you’ve had about us that you didn’t want to say out loud?",
   "What’s something you’re still learning to trust about me?"
 ];
 
 const wheelLevel3 = [
+  "What’s something you want us to do together that we haven’t talked about yet?",
+  "What’s something you want to initiate with us but hesitate to?",
+  "What’s a side of you you want me to see more of?",
   "What do you need from me to feel fully safe long-term?",
-  "What’s something you’re afraid I’ll misunderstand about you?",
-  "What boundary do you want us to protect as we grow?",
-  "What’s the hardest thing for you to say out loud in relationships?",
-  "What’s one thing you never want us to lose, no matter what?"
+  "What boundary do you want us to protect as we grow?"
 ];
 
 // -------------------------------
@@ -615,3 +615,4 @@ nameBtnP2.addEventListener("click", () => editPlayerName(2));
 updateMetersUI();
 setActivePlayerUI();
 updatePlayerNamesUI();
+
